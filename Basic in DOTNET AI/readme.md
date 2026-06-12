@@ -63,3 +63,21 @@ docker ps
 ```
 
 You should see a running container named `ollama`.
+
+
+
+# NOTE : 
+
+```
+OllamaSharp
+OllamaSharp.OllamaApiClientExtensions.GenerateAsync(...)
+Microsoft.Extensions.AI
+Microsoft.Extensions.AI.EmbeddingGeneratorExtensions.GenerateAsync(...)
+
+So when you call:
+
+ollama.GenerateAsync(...)
+
+👉 C# says: “Which GenerateAsync do you mean?”
+
+```
