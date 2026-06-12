@@ -1,35 +1,65 @@
-﻿## Create Console App
+﻿# Create Console App
 
-Run this code to pulling and install Ollama Docker image:
+## Start Ollama with Docker
 
-```
+Run the following command to download and start the Ollama Docker container:
+
+```bash
 docker run -d --name ollama -p 11434:11434 -v ollama:/root/.ollama ollama/ollama
 ```
 
-Then run this code to pull the qwen3 model:
+## Pull the Qwen3 Model
 
-```
+After the container is running, download the Qwen3 model:
+
+```bash
 docker exec -it ollama ollama pull qwen3
 ```
 
+## Verify Ollama is Running
 
-To check container is running then
+Open the following URL in your browser:
 
 ```
 http://localhost:11434/
 ```
 
-If you hit the url the you will see the models :
+If Ollama is running successfully, the endpoint should return a response.
 
-In CMD
-```
+## View Installed Models
+
+### Using the Command Line
+
+```bash
 curl http://localhost:11434/api/tags
 ```
 
-in Browser
+### Using a Browser
+
+Open:
+
 ```
 http://localhost:11434/api/tags
 ```
 
+You should see a JSON response similar to:
 
+```json
+{
+  "models": [
+    {
+      "name": "qwen3"
+    }
+  ]
+}
+```
 
+## Troubleshooting
+
+To verify that the Ollama container is running:
+
+```bash
+docker ps
+```
+
+You should see a running container named `ollama`.
