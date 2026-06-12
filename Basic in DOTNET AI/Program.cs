@@ -7,14 +7,24 @@ Console.Write("Prompt: ");
 
 var prompt = Console.ReadLine();
 
-var sb = new StringBuilder();
-
 await foreach (var chunk in ollama.GenerateAsync(prompt!))
 {
-    sb.Append(chunk?.Response);
+    Console.Write(chunk?.Response);
 }
 
-var response = sb.ToString();
+Console.WriteLine();
 
-Console.WriteLine(response);
+
+// If you want to collect the entire response into a string:
+
+//var sb = new StringBuilder();
+
+//await foreach (var chunk in ollama.GenerateAsync(prompt!))
+//{
+//    sb.Append(chunk?.Response);
+//}
+
+//var response = sb.ToString();
+
+//Console.WriteLine(response);
 
