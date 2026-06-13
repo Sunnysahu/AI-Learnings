@@ -1,59 +1,40 @@
-﻿using Microsoft.Extensions.AI;
+﻿using Basic_in_DOTNET_AI;
+using Microsoft.Extensions.AI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OllamaSharp;
 using System.Text;
 
 
-// Implementation of the Ollama API client in C#
 
-var ollama = new OllamaApiClient(
-    new Uri("http://localhost:11434"),
-    "qwen3");
 
-Console.Write("Prompt: ");
-var prompt = Console.ReadLine();
-
-await foreach (var chunk in OllamaSharp.OllamaApiClientExtensions.GenerateAsync(
-    ollama,
-    prompt!))
+internal class Program
 {
-    Console.Write(chunk?.Response);
+    static async Task Main(string[] args)
+    {
+
+        Console.Write("Prompt: ");
+        var prompt = Console.ReadLine();
+
+        if (string.IsNullOrWhiteSpace(prompt))
+        {
+            Console.WriteLine("Prompt cannot be empty.");
+            return;
+        }
+
+        // Implementation of the Ollama API client in C#
+
+        GenerateResponse app = new GenerateResponse();
+        await app.RunAsync(prompt);
+
+
+
+    }
 }
 
-Console.WriteLine();
-
-/*
-OllamaSharp
-OllamaSharp.OllamaApiClientExtensions.GenerateAsync(...)
-Microsoft.Extensions.AI
-Microsoft.Extensions.AI.EmbeddingGeneratorExtensions.GenerateAsync(...)
-
-So when you call:
-
-ollama.GenerateAsync(...)
-
-👉 C# says: “Which GenerateAsync do you mean?”
-
-*/
 
 
-// Implementation of the Ollama API client in C# with collecting the entire response into a string
-// If you want to collect the entire response into a string:
 
-//var sb = new StringBuilder();
-
-//await foreach (var chunk in ollama.GenerateAsync(prompt!))
-//{
-//    sb.Append(chunk?.Response);
-//}
-
-//var response = sb.ToString();
-
-//Console.WriteLine(response);
-
-
-// Builder
 
 //var builder = Host.CreateApplicationBuilder(args);
 
