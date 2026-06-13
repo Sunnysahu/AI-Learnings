@@ -1,6 +1,4 @@
 ﻿using OllamaSharp;
-using System;
-
 
 namespace Basic_in_DOTNET_AI
 {
