@@ -32,26 +32,6 @@ internal class Program
 
         EntireResponse entireResponse = new EntireResponse();
         await entireResponse.GenerateAsync(prompt);
-
+        
     }
 }
-
-
-
-
-
-//var builder = Host.CreateApplicationBuilder(args);
-
-//builder.Services.AddChatClient(new OllamaApiClient(new Uri("http://localhost:11434"), "qwen3"));
-
-//var app = builder.Build();
-
-//Console.WriteLine("Hello There!!!");
-
-//var chatClient = app.Services.GetRequiredService<IChatClient>();
-
-//Console.WriteLine("Hello There 2!!!");
-
-//var chatCompletion = await chatClient.GetResponseAsync("What is .NET ?");
-
-//Console.WriteLine("Answer : " + chatCompletion);
