@@ -25,17 +25,35 @@ if (!File.Exists(imagePath))
     return;
 }
 
-//var message = new ChatMessage(ChatRole.User, "What's in the Image ? ");
-var message = new ChatMessage(ChatRole.User, "Count all the Humans in the image, even in the background");
+foreach (var item in Directory.GetFiles("images", "*.jpg"))
+{
+    var name = Path.GetFileNameWithoutExtension(item);
 
-message.Contents.Add(
-    new DataContent(
-        File.ReadAllBytes(imagePath), 
+    var msg = new ChatMessage(ChatRole.User, "What in the Image");
+
+    msg.Contents.Add(new DataContent
+        (
+        File.ReadAllBytes(item),
         MediaTypeNames.Image.Jpeg
-    )
-);
+        )
+    );  
 
-var response = await chatClient.GetResponseAsync(message);
+    var result = await chatClient.GetResponseAsync(msg);
 
-Console.WriteLine(response);
+    Console.WriteLine($"Image: {name} - Response: {result} \n");
+}
+
+//var message = new ChatMessage(ChatRole.User, "What's in the Image ? ");
+//var message = new ChatMessage(ChatRole.User, "Count all the Humans in the image, even in the background");
+
+//message.Contents.Add(
+//    new DataContent(
+//        File.ReadAllBytes(imagePath), 
+//        MediaTypeNames.Image.Jpeg
+//    )
+//);
+
+//var response = await chatClient.GetResponseAsync(message);
+
+//Console.WriteLine(response);
 
