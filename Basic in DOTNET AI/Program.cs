@@ -24,8 +24,8 @@ internal class Program
 
         // Implementation of the Ollama API client in C#
 
-        GenerateResponse app = new GenerateResponse();
-        await app.RunAsync(prompt);
+        //GenerateResponse app = new GenerateResponse();
+        //await app.RunAsync(prompt);
 
         // Implementation of the Ollama API client in C# with collecting the entire response into a string
         // If you want to collect the entire response into a string:
@@ -33,7 +33,6 @@ internal class Program
         //EntireResponse entireResponse = new EntireResponse();
         //await entireResponse.GenerateAsync(prompt);
 
-
-
+        await HostApplication.RunAsync(args, prompt);
     }
 }
