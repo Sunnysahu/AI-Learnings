@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37314.3 d17.14
+VisualStudioVersion = 17.14.37314.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basic in DOTNET AI", "Basic in DOTNET AI\Basic in DOTNET AI.csproj", "{FFE732A5-0F00-47C7-95E9-3C9499EB6976}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Image Recogination", "Image Recogination\Image Recogination.csproj", "{5A0145B1-D3D0-45D5-9AFD-F0E002A9D1D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FFE732A5-0F00-47C7-95E9-3C9499EB6976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFE732A5-0F00-47C7-95E9-3C9499EB6976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFE732A5-0F00-47C7-95E9-3C9499EB6976}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0145B1-D3D0-45D5-9AFD-F0E002A9D1D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0145B1-D3D0-45D5-9AFD-F0E002A9D1D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0145B1-D3D0-45D5-9AFD-F0E002A9D1D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0145B1-D3D0-45D5-9AFD-F0E002A9D1D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
