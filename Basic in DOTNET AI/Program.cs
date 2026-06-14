@@ -13,14 +13,14 @@ internal class Program
     static async Task Main(string[] args)
     {
 
-        Console.Write("Prompt: ");
-        var prompt = Console.ReadLine();
+        //Console.Write("Prompt: ");
+        //var prompt = Console.ReadLine();
 
-        if (string.IsNullOrWhiteSpace(prompt))
-        {
-            Console.WriteLine("Prompt cannot be empty.");
-            return;
-        }
+        //if (string.IsNullOrWhiteSpace(prompt))
+        //{
+        //    Console.WriteLine("Prompt cannot be empty.");
+        //    return;
+        //}
 
         // Implementation of the Ollama API client in C#
 
@@ -33,6 +33,25 @@ internal class Program
         //EntireResponse entireResponse = new EntireResponse();
         //await entireResponse.GenerateAsync(prompt);
 
-        await HostApplication.RunAsync(args, prompt);
+        //await HostApplication.RunAsync(args, prompt);
+
+        ChatHistory chatHistory = new ChatHistory();
+
+        while (true)
+        {
+            Console.Write("Prompt: ");
+
+            var prompt = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(prompt))
+            {
+                Console.WriteLine("Prompt cannot be empty.");
+                continue;
+            }
+
+            await chatHistory.RunAsync(prompt);
+        }
+
+
     }
 }
