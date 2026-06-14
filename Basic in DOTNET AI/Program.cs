@@ -1,12 +1,4 @@
 ﻿using Basic_in_DOTNET_AI;
-using Microsoft.Extensions.AI;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using OllamaSharp;
-using System.Text;
-
-
-
 
 internal class Program
 {
@@ -35,9 +27,30 @@ internal class Program
 
         //await HostApplication.RunAsync(args, prompt);
 
-        ChatHistory chatHistory = new ChatHistory();
+        //-----------------------------------
 
-        while (true)
+        //ChatHistory chatHistory = new ChatHistory();
+
+        //while (true)
+        //{
+        //    Console.Write("Prompt: ");
+
+        //    var prompt = Console.ReadLine();
+
+        //    if (string.IsNullOrWhiteSpace(prompt))
+        //    {
+        //        Console.WriteLine("Prompt cannot be empty.");
+        //        continue;
+        //    }
+
+        //    await chatHistory.RunAsync(prompt);
+        //}
+
+        //-----------------------------------
+
+        ChatHistroyCustomImplementation chatHistroyCustomImplementation = new ChatHistroyCustomImplementation();
+
+        while (true) 
         {
             Console.Write("Prompt: ");
 
@@ -49,9 +62,8 @@ internal class Program
                 continue;
             }
 
-            await chatHistory.RunAsync(prompt);
+            await chatHistroyCustomImplementation.RunAsync(prompt);
         }
-
 
     }
 }
