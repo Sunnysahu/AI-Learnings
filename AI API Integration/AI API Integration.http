@@ -1,0 +1,6 @@
+@AI_API_Integration_HostAddress = http://localhost:5247
+
+GET {{AI_API_Integration_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
