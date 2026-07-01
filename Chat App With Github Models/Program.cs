@@ -38,6 +38,6 @@ while (true)
         Console.Write(response.Text);
         assistantResponse += response.Text;
     }
-
+    Console.WriteLine();
     chatHistroy.Add(new ChatMessage(ChatRole.Assistant, assistantResponse));
 }
