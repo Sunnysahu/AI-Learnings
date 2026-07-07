@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat App With Github Models
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI Translation Agent", "AI Translation Agent\AI Translation Agent.csproj", "{D4F80DB8-36E4-427A-8EBA-6D2563C97A5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIAgent.Microsoft.Api", "AIAgent.Microsoft.Api\AIAgent.Microsoft.Api.csproj", "{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIAgent.Shared", "AIAgent.Shared\AIAgent.Shared.csproj", "{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,30 @@ Global
 		{D4F80DB8-36E4-427A-8EBA-6D2563C97A5E}.Release|x64.Build.0 = Release|Any CPU
 		{D4F80DB8-36E4-427A-8EBA-6D2563C97A5E}.Release|x86.ActiveCfg = Release|Any CPU
 		{D4F80DB8-36E4-427A-8EBA-6D2563C97A5E}.Release|x86.Build.0 = Release|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Debug|x64.Build.0 = Debug|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Debug|x86.Build.0 = Debug|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Release|x64.ActiveCfg = Release|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Release|x64.Build.0 = Release|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Release|x86.ActiveCfg = Release|Any CPU
+		{AE939B5F-4DAC-427C-8FBF-6699AA429EDA}.Release|x86.Build.0 = Release|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Debug|x64.Build.0 = Debug|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Debug|x86.Build.0 = Debug|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Release|x64.ActiveCfg = Release|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Release|x64.Build.0 = Release|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Release|x86.ActiveCfg = Release|Any CPU
+		{D8AA833E-A3A4-40ED-8B78-89E5E2F75F2F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
