@@ -1,26 +1,27 @@
-﻿using System.ComponentModel;
+﻿namespace AIAgent.Microsoft.Api.Tools;
 
-namespace AIAgent.Microsoft.Api.Tools;
-
-public static class CalculatorTools
+public static class CalculatorTool
 {
-    [Description("Adds two numbers together.")]
-    public static int Add
-    (
-        [Description("First number")] int firstNumber,
-        [Description("Second number")] int secondNumber
-    )
+    public static int Add(int a, int b)
     {
-        return firstNumber + secondNumber;
+        return a + b;
     }
 
-    [Description("Multiply two numbers.")]
-    public static int Multiply
-    (
-        [Description("First number")] int firstNumber, 
-        [Description("Second number")] int secondNumber
-    )
+    public static int Subtract(int a, int b)
     {
-        return firstNumber * secondNumber;
+        return a - b;
+    }
+
+    public static int Multiply(int a, int b)
+    {
+        return a * b;
+    }
+
+    public static double Divide(int a, int b)
+    {
+        if (b == 0)
+            throw new DivideByZeroException();
+
+        return (double) a / b;
     }
 }

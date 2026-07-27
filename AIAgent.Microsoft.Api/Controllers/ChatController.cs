@@ -1,4 +1,5 @@
-﻿using AIAgent.Microsoft.Api.Services;
+﻿using AIAgent.Microsoft.Api.Models;
+using AIAgent.Microsoft.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AIAgent.Microsoft.Api.Controllers
@@ -7,16 +8,16 @@ namespace AIAgent.Microsoft.Api.Controllers
     [ApiController]
     public sealed class ChatController : ControllerBase
     {
-        private readonly IChatService _chatService;
+        private readonly WorkflowService _workflow;
 
-        public ChatController(IChatService chatService) => _chatService = chatService;
+        public ChatController(WorkflowService workflow) => _workflow = workflow;
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpPost]
+        public async Task<IActionResult> Chat(ChatRequest request)
         {
-            string response = await _chatService.AskAsync("Hello! My name is Sunny Sahu.");
+            string result = await _workflow.ExecuteChatAsync(request.Message);
 
-            return Ok(response);
+            return Ok(new ChatResponse(result));
         }
     }
 }

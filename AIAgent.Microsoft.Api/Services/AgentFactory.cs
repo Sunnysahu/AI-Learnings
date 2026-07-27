@@ -1,93 +1,38 @@
-﻿using AIAgent.Microsoft.Api.Tools;
-using Agents = Microsoft.Agents.AI;
-using AI = Microsoft.Extensions.AI;
+﻿using AIAgent.Microsoft.Api.Agents.Assistant;
+using AIAgent.Microsoft.Api.Agents.CodeReview;
+using AIAgent.Microsoft.Api.Agents.Translation;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+
 
 namespace AIAgent.Microsoft.Api.Services;
 
 public sealed class AgentFactory : IAgentFactory
 {
-    private readonly AI.IChatClient _chatClient;
+    private readonly IChatClient _chatClient;
+    private readonly IServiceProvider _serviceProvider;
 
-    public AgentFactory(AI.IChatClient chatClient)
+    public AgentFactory(IChatClient chatClient, IServiceProvider serviceProvider)
     {
         _chatClient = chatClient;
+        _serviceProvider = serviceProvider;
     }
 
-    IList<AI.AITool> tools = [
-        AI.AIFunctionFactory.Create(CalculatorTools.Add),
-        AI.AIFunctionFactory.Create(CalculatorTools.Multiply)
-    ];
+    public ChatClientAgent CreateAssistantAgent() => AssistantAgent.Create(_chatClient, _serviceProvider);
 
-    public Agents.ChatClientAgent CreateAssistantAgent()
-    {
-        return new Agents.ChatClientAgent(
-            chatClient: _chatClient,
-            instructions:
-            """
-            You are a helpful assistant.
+    public ChatClientAgent CreateHindiAgent() => HindiAgent.Create(_chatClient);
 
-            If a mathematical calculation is required,
-            ALWAYS use the provided tools.
+    public ChatClientAgent CreateSpanishAgent() => SpanishAgent.Create(_chatClient);
 
-            Never calculate yourself.
-            """,
+    public ChatClientAgent CreateReviewerAgent() => ReviewerAgent.Create(_chatClient);
 
-            name: "Assistant Agent",
-            description: "General Assistant",
-            tools: tools
-        );
-    }
+    public ChatClientAgent CreateSummaryAgent() => SummaryAgent.Create(_chatClient);
 
-    public Agents.ChatClientAgent CreateHindiAgent()
-    {
-        return new Agents.ChatClientAgent(
-            _chatClient,
-            instructions:
-            """
-            Translate the given English text into Hindi.
-            Return ONLY the Hindi translation.
-            """,
-            name: "Hindi Agent",
-            description: "Hindi Translator");
-    }
+    public ChatClientAgent CreateArchitectureAgent() => ArchitectureAgent.Create(_chatClient);
 
-    public Agents.ChatClientAgent CreateSpanishAgent()
-    {
-        return new Agents.ChatClientAgent(
-            _chatClient,
-            instructions:
-            """
-            Translate the given English text into Spanish.
-            Return ONLY the Spanish translation.
-            """,
-            name: "Spanish Agent",
-            description: "Spanish Translator"
-        );
-    }
+    public ChatClientAgent CreateSecurityAgent() => SecurityAgent.Create(_chatClient);
 
-    public Agents.ChatClientAgent CreateReviewerAgent()
-    {
-        return new Agents.ChatClientAgent(
-            _chatClient,
-            instructions:
-            """
-            Review the given translation.
-            Correct grammar, spelling and meaning.
-            Return the corrected text only.
-            """,
-            name: "Reviewer Agent",
-            description: "Quality Reviewer");
-    }
+    public ChatClientAgent CreatePerformanceAgent() => PerformanceAgent.Create(_chatClient);
 
-    public Agents.ChatClientAgent CreateSummaryAgent()
-    {
-        return new Agents.ChatClientAgent(
-            _chatClient,
-            instructions:
-            """
-            Summarize the given text into a few concise sentences.
-            """,
-            name: "Summary Agent",
-            description: "Summary Generator");
-    }
+    public ChatClientAgent CreateCodeReviewSummaryAgent() => CodeReviewSummaryAgent.Create(_chatClient);
 }

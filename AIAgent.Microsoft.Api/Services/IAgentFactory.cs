@@ -1,16 +1,24 @@
-﻿using Agents = Microsoft.Agents.AI;
+﻿using Microsoft.Agents.AI;
 
 namespace AIAgent.Microsoft.Api.Services;
 
 public interface IAgentFactory
 {
-    Agents.ChatClientAgent CreateAssistantAgent();
+    ChatClientAgent CreateAssistantAgent();
 
-    Agents.ChatClientAgent CreateHindiAgent();
+    ChatClientAgent CreateHindiAgent();
 
-    Agents.ChatClientAgent CreateSpanishAgent();
+    ChatClientAgent CreateSpanishAgent();
 
-    Agents.ChatClientAgent CreateReviewerAgent();
+    ChatClientAgent CreateReviewerAgent();
 
-    Agents.ChatClientAgent CreateSummaryAgent();
+    ChatClientAgent CreateSummaryAgent();
+
+    ChatClientAgent CreateArchitectureAgent();
+
+    ChatClientAgent CreateSecurityAgent();
+
+    ChatClientAgent CreatePerformanceAgent();
+
+    ChatClientAgent CreateCodeReviewSummaryAgent();
 }

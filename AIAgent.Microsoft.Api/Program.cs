@@ -1,5 +1,6 @@
-using AIAgent.Microsoft.Api.Models;
 using AIAgent.Microsoft.Api.Services;
+using AIAgent.Microsoft.Api.Tools;
+using AIAgent.Microsoft.Api.Workflows;
 using Microsoft.Extensions.AI;
 using OpenAI;
 using OpenAI.Chat;
@@ -14,32 +15,37 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-
-builder.Services.Configure<AIOptions>(builder.Configuration.GetSection(AIOptions.SectionName));
-
 builder.Services.AddSingleton<IChatClient>(sp =>
 {
-    AIOptions options = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<AIOptions>>().Value;
+    IConfiguration config = sp.GetRequiredService<IConfiguration>();
 
     ChatClient client = new(
-        model: options.Model,
-        credential: new ApiKeyCredential(options.ApiKey),
+        model: config["AI:Model"]!,
+        credential: new ApiKeyCredential(config["AI:ApiKey"]!),
         options: new OpenAIClientOptions
         {
-            Endpoint = new Uri(options.Endpoint)
-        }
-    );
+            Endpoint = new Uri(config["AI:Endpoint"]!)
+        });
 
     return client.AsIChatClient();
 });
 
-builder.Services.AddScoped<IChatService, ChatService>();
 
-builder.Services.AddScoped<IAgentService, AgentService>();
+builder.Services.AddSingleton<IAgentFactory, AgentFactory>();   
 
-builder.Services.AddSingleton<IAgentFactory, AgentFactory>();
+builder.Services.AddSingleton<TranslationWorkflow>();
 
-builder.Services.AddSingleton<IConversationManager, ConversationManager>();
+builder.Services.AddSingleton<WorkflowService>();
+
+builder.Services.AddSingleton<CodeReviewWorkflow>();
+
+builder.Services.AddSingleton<ChatWorkflow>();
+
+builder.Services.AddSingleton<WeatherTool>();
+
+builder.Services.AddSingleton<ConversationMemory>();
+
+builder.Services.AddHttpClient<WeatherService>();
 
 var app = builder.Build();
 

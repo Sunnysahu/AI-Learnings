@@ -382,3 +382,65 @@ Understanding these patterns will help you not only use the APIs effectively but
 # 🎯 Goal
 
 By the end of this project, you'll have practical experience building enterprise AI applications with Microsoft's AI stack, including agents, workflows, memory, tool calling, RAG, MCP, observability, deployment, and production-ready architecture.
+
+```
+Workflow 1 – Translation
+               Input
+                 │
+      ┌──────────┴──────────┐
+      ▼                     ▼
+ Hindi Agent         Spanish Agent
+      │                     │
+      └──────────┬──────────┘
+                 ▼
+          Reviewer Agent
+                 ▼
+          Summary Agent
+
+Concepts you'll learn:
+
+Parallel execution
+Fan-Out
+Fan-In
+Agent collaboration
+
+---
+
+Workflow 2 – Code Review
+                 Source Code
+                      │
+      ┌───────────────┼───────────────┐
+      ▼               ▼               ▼
+ Architecture     Security      Performance
+      │               │               │
+      └───────────────┼───────────────┘
+                      ▼
+               Summary Agent
+
+Concepts:
+
+Parallel analysis
+Merging results
+Specialized AI agents
+
+---
+Workflow 3 – General Chat
+User
+ │
+ ▼
+Assistant Agent
+ │
+ ▼
+Calculator Tool
+
+Date Tool
+
+Future RAG
+
+Concepts:
+
+Tool calling
+Function calling
+Memory
+General assistant
+```
