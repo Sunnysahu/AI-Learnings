@@ -2,6 +2,8 @@
 using Microsoft.Agents.AI.Workflows;
 using Microsoft.Extensions.AI;
 
+using ChatResponse = AIAgent.Microsoft.Api.Models.ChatResponse;
+
 namespace AIAgent.Microsoft.Api.Services;
 
 public sealed class WorkflowService
@@ -9,20 +11,20 @@ public sealed class WorkflowService
     private readonly TranslationWorkflow _translationWorkflow;
     private readonly CodeReviewWorkflow _codeReviewWorkflow;
     private readonly ChatWorkflow _chatWorkflow;
-    private readonly ConversationMemory _memory;
+    private readonly ConversationSessionManager _sessionManager;
 
     public WorkflowService
     (
         TranslationWorkflow translationWorkflow,
         CodeReviewWorkflow codeReviewWorkflow,
         ChatWorkflow chatWorkflow,
-        ConversationMemory memory
+        ConversationSessionManager sessionManager
     )
     {
         _translationWorkflow = translationWorkflow;
         _codeReviewWorkflow = codeReviewWorkflow;
         _chatWorkflow = chatWorkflow;
-        _memory = memory;
+        _sessionManager = sessionManager; ;
     }
 
     public async Task<string> ExecuteAsync(string input)
@@ -88,13 +90,17 @@ public sealed class WorkflowService
         return output;
     }
 
-    public async Task<string> ExecuteChatAsync(string message)
+    public async Task<ChatResponse> ExecuteChatAsync(Guid? sessionId, string message)
     {
+        Guid id = sessionId ?? Guid.NewGuid();
+
+        ConversationSession session = _sessionManager.GetSession(id);
+
+        session.Messages.Add(new ChatMessage(ChatRole.User, message));
+
         Workflow workflow = _chatWorkflow.Build();
 
-        _memory.AddUserMessage(message);
-
-        List<ChatMessage> messages = [.. _memory.Messages];
+        List<ChatMessage> messages = [.. session.Messages];
 
         await using StreamingRun run = await InProcessExecution.RunStreamingAsync(workflow, messages);
 
@@ -109,9 +115,8 @@ public sealed class WorkflowService
                 response += update.Update.Text;
             }
         }
+        session.Messages.Add(new ChatMessage(ChatRole.Assistant, response));
 
-        _memory.AddAssistantMessage(response);
-
-        return response;
+        return new ChatResponse(id, response);
     }
 }

@@ -15,9 +15,9 @@ namespace AIAgent.Microsoft.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Chat(ChatRequest request)
         {
-            string result = await _workflow.ExecuteChatAsync(request.Message);
+            ChatResponse result = await _workflow.ExecuteChatAsync(request.SessionId, request.Message);
 
-            return Ok(new ChatResponse(result));
+            return Ok(result);
         }
     }
 }

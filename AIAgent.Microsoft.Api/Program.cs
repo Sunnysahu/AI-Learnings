@@ -25,7 +25,8 @@ builder.Services.AddSingleton<IChatClient>(sp =>
         options: new OpenAIClientOptions
         {
             Endpoint = new Uri(config["AI:Endpoint"]!)
-        });
+        }
+    );
 
     return client.AsIChatClient();
 });
@@ -43,7 +44,7 @@ builder.Services.AddSingleton<ChatWorkflow>();
 
 builder.Services.AddSingleton<WeatherTool>();
 
-builder.Services.AddSingleton<ConversationMemory>();
+builder.Services.AddSingleton<ConversationSessionManager>();
 
 builder.Services.AddHttpClient<WeatherService>();
 
