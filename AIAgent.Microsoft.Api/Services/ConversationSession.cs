@@ -4,12 +4,12 @@ namespace AIAgent.Microsoft.Api.Services;
 
 public sealed class ConversationSession
 {
-    public Guid Id { get; }
+    public Guid SessionId { get; }
 
     public List<ChatMessage> Messages { get; } = [];
 
-    public ConversationSession(Guid id)
+    public ConversationSession(Guid sessionId)
     {
-        Id = id;
+        SessionId = sessionId;
     }
 }

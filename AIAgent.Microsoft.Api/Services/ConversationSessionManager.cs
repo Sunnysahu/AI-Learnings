@@ -6,7 +6,13 @@ public sealed class ConversationSessionManager
 {
     private readonly ConcurrentDictionary<Guid, ConversationSession> _sessions = new();
 
-    public ConversationSession GetSession(Guid sessionId) => _sessions.GetOrAdd(sessionId, id => new ConversationSession(id));
+    public ConversationSession GetSession(Guid sessionId) => 
+        _sessions.GetOrAdd(sessionId, id => new ConversationSession(id));
+
+    public void Add(ConversationSession session)
+    {
+        _sessions.TryAdd(session.SessionId, session);
+    }
 
     public void Remove(Guid sessionId)
     {
