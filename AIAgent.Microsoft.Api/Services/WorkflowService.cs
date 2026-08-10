@@ -69,15 +69,9 @@ public sealed class WorkflowService
     {
         Workflow workflow = _codeReviewWorkflow.Build();
 
-        List<ChatMessage> messages =
-        [
-            new(ChatRole.User, code)
-        ];
+        List<ChatMessage> messages = [new(ChatRole.User, code)];
 
-        await using StreamingRun run =
-            await InProcessExecution.RunStreamingAsync(
-                workflow,
-                messages);
+        await using StreamingRun run = await InProcessExecution.RunStreamingAsync(workflow, messages);
 
         await run.TrySendMessageAsync(new TurnToken(emitEvents: true));
 

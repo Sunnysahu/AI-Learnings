@@ -3,22 +3,21 @@ using AIAgent.Microsoft.Api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AIAgent.Microsoft.Api.Controllers
+namespace AIAgent.Microsoft.Api.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class CodeReviewController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CodeReviewController : ControllerBase
+    private readonly WorkflowService _workflow;
+
+    public CodeReviewController(WorkflowService workflow) => _workflow = workflow;
+
+    [HttpPost]
+    public async Task<IActionResult> Review([FromBody] CodeReviewRequest request)
     {
-        private readonly WorkflowService _workflow;
+        string result = await _workflow.ExecuteCodeReviewAsync(request.Code);
 
-        public CodeReviewController(WorkflowService workflow) => _workflow = workflow;
-
-        [HttpPost]
-        public async Task<IActionResult> Review([FromBody] CodeReviewRequest request)
-        {
-            string result = await _workflow.ExecuteCodeReviewAsync(request.Code);
-
-            return Ok(new CodeReviewResponse(result));
-        }
+        return Ok(new CodeReviewResponse(result));
     }
 }

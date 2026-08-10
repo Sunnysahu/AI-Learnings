@@ -55,6 +55,8 @@ builder.Services.AddSingleton<WeatherTool>();
 
 builder.Services.AddSingleton<ConversationSessionManager>();
 
+builder.Services.AddSingleton<ApprovalService>();
+
 builder.Services.AddHttpClient<WeatherService>();
 
 var app = builder.Build();
