@@ -1,5 +1,6 @@
 using AI_Agent_Basic.Agents;
 using AI_Agent_Basic.Configuration;
+using AI_Agent_Basic.Tools.Weather;
 using Microsoft.Extensions.AI;
 using OpenAI;
 using Scalar.AspNetCore;
@@ -32,6 +33,9 @@ builder.Services.AddSingleton<IChatClient>(_ =>
 
 builder.Services.AddSingleton<AgentFactory>();
 
+// Tools External Calls
+
+builder.Services.AddSingleton<AgentFactory>();
 
 var app = builder.Build();
 

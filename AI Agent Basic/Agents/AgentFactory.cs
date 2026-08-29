@@ -11,5 +11,9 @@ public sealed class AgentFactory
     
 
     public AIAgent Create(AgentDefinition definition) => 
-        _chatClient.AsAIAgent(definition.instruction, definition.name);
+        _chatClient.AsAIAgent(
+            definition.instruction, 
+            definition.name, 
+            definition.description,
+            definition.Tools);
 }

@@ -1,19 +1,25 @@
-﻿using System.Reflection.Metadata;
+﻿using AI_Agent_Basic.Tools;
+using AI_Agent_Basic.Tools.Weather;
+using Microsoft.Extensions.AI;
+using System.Reflection.Metadata;
 
 namespace AI_Agent_Basic.Agents;
 
-public record AgentDefinition(string name, string instruction);
+public record AgentDefinition(string name, string instruction, string description, IList<AITool>? Tools = null);
 
 public static class AgentDefinitions
 {
-    public static readonly AgentDefinition Chat = new(
+
+    public static AgentDefinition Chat = new(
         "ChatAgent",
         """
             You are a helpful AI assistant.
 
             Answer the user's questions clearly,
             accurately and concisely.
-            """
+            """,
+        "This is a Chat Agent",
+        [Weather.GetWeather]
     );
 
     public static readonly AgentDefinition Translator = new(
@@ -31,7 +37,8 @@ public static class AgentDefinitions
         - Maintain proper names, technical terms and formatting where appropriate.
         - If the user specifies a target language, translate into that language.
         - If no target language is specified, ask which language they want.
-        """
+        """,
+        "This is a Translator Agent"
     );
 
     public static readonly AgentDefinition CodeReviewer = new(
@@ -57,7 +64,8 @@ public static class AgentDefinitions
         - Provide corrected code when appropriate.
         - Prioritize serious issues over minor style suggestions.
         - Do not criticize code when there is no actual problem.
-        """
+        """,
+        "This is a CodeReviewer Agent"
     );
 
     public static readonly AgentDefinition Sql = new(
@@ -84,6 +92,7 @@ public static class AgentDefinitions
             - Consider security and SQL injection risks.
             - Explain the reasoning behind important recommendations.
             - When providing SQL code, format it clearly.
-            """
+            """,
+        "This is a SQL Agent"
     );
 }
